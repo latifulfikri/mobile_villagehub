@@ -7,15 +7,32 @@
 
 import SwiftUI
 
+var UserName = "Micca"
+var Car = "Yaris"
+var CarNum = "N 1049 MG"
+var isCar = true
+
 struct ContentView: View {
+    
+    @State private var selectedTab: Tab = .house
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationView {
+            ZStack {
+//                LinearGradient(colors: [Color("bg"),Color("shadow1")],
+//                               startPoint: .topLeading,
+//                               endPoint: .bottomTrailing).edgesIgnoringSafeArea(.all)
+                Color("bg").edgesIgnoringSafeArea(.all)
+                switch selectedTab {
+                case .house:
+                    HomePage()
+                case .shield:
+                    SecurityPage()
+                case .shippingbox:
+                    ShareStuffPage()                }
+                MenuBar(selectedTab: $selectedTab)
+            }
+        }.navigationTitle("Home")
     }
 }
 
